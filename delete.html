@@ -1,30 +1,88 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Getting started with jQuery</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                color: rgb(16, 10, 102);
-            }
-        </style>
-    </head>
-    <body>
+ <head>
+  <meta charset="utf-8" />
+  <title>Spin-off of "Challenge: Mad Libs"</title>
+ </head>
+ <style>
+    body {
+        background-color: black;
+        padding: 10px;
+        color: white;
+        font-size: 0.75em;
+    }
+    p {
+        padding: 0;
+        color: white;
+        font-size: 1.89em;
+    }
+    .planet {
+        width: 100px;
+        height: 100px;
+        border-radius: 29%;
+        text-align: center;
+        padding: 0;
+        position: absolute;
+    }
+</style>
+ 
+<body>
+ 
+    <h1>Mind-reader app. What you think of your friends.
+    </h1>
+     
+    <ul>
+    <li>Your name: <input type="text" id="noun"></li>
+    <li>Negative adjective: <input type="text" id="adjective"></li>
+    <li>Your friend's name: <input type="text" id="person"></li>
+    <li>Sexual Orientation: 
+        <select type="text" id="sex">
+            <option value="hom">Gay</option>
+            <option value="het">Straight</option>
+        </select>
+    </li>
+    </ul>
+     
+    <button id="lib-button">Lib it!</button>
+      
+    <p>Generated story: 
+    <span id="story"></span>
+    </p>
+        
+<script>
 
-    <h1 id="heading">What is jQuery?</h1>
 
-    <p>jQuery is the most popular JavaScript library. It gives developers lots of useful functions so they can make their webpage interactive across multiple browsers.</p>
+    var libButton = document.getElementById('lib-button');
+    var libIt = function() {
+        var storyDiv = document.getElementById("story");
+        var name = document.getElementById("noun").value;
+        var adj = document.getElementById("adjective").value;
+        var name2 = document.getElementById("person").value;
+        var sex = document.getElementById("sex").value;
+        
+        if (sex === "hom") {
+            var imageSex = document.createElement("img");
+        imageSex.className = "planet";
+        imageSex.src = "https://upload.wikimedia.org/wikipedia/commons/c/cd/Human_Penis.png";
+        document.body.appendChild(imageSex);
+        } else if (sex === "het"){
+            var imageSex = document.createElement("img");
+        imageSex.className = "planet";
+        imageSex.src = "https://upload.wikimedia.org/wikipedia/commons/f/f1/Open_vagina.jpg";
+        document.body.appendChild(imageSex);
+        }
+        
+        if (sex === "hom") {
+            var sex = "fagot";
+        } else {
+            var sex = "brave man that grab them by the pussy";
+        }
+        
+        storyDiv.innerHTML = name + " is not " + adj + ", but "+ name2 + " is. " + name2 + " is also a " + sex + ".";
+    };
     
-    <p class="note">jQuery is an open source library with a big community of contributors.</p>
-    
-    <h1>Why should you learn jQuery?</h1>
+    libButton.addEventListener('click', libIt);
 
-    <p>If you learn jQuery, you'll be able to use it in your own webpages, understood other developer's webpages, and have a better understanding generally about how to use libraries.</p>
-    
-    <p class="note">Note: jQuery functions use the DOM API (like <code>document.getElementById</code>). You should  learn that first, if you haven't yet.</p>
-    
-    <script></script>
-    
-    </body>
+</script>
+</body>
 </html>
