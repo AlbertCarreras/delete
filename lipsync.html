@@ -3,85 +3,121 @@
 <head>
 <meta charset="utf-8">
 <title>Project: Scene change</title>
+
+<!--Adding style on the html file. We could use a CSS file but we are following the exercise instructions.  -->
 <style>
-    .header,
+    body {
+      background: black;
+    }
+    .container {
+      position: relative;
+      margin: 0 auto;
+      width: 960px;
+      height: 500px;
+      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/White_House_lawn.jpg/2560px-White_House_lawn.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      text-align:center;
+      vertical-align: bottom;
+      color: red;
+      font-family: "Arial";
+    }
     p {
-        color: purple;
-        position: relative;
-        text-align: left;
-        font-family: "Arial";
-        top: -11px;
-    }
-    .white_house {
-        width: 530px;
-        position: relative;
-    }
-    .democratBtn{
-        position:relative;
-        margin-top: 40px;
-    }
-    .republicanBtn{
-        position:relative;
-        margin-top: 40px;
+        color: blue;
     }
     .inHouse {
         position: absolute;
-        height: 50px;
-        top: 220px;
-        left: 250px;
+        height: 100px;
+        top: 230px;
+        left: 450px;
     }
-    .outHouse {
+    .outHouse  {
         position: absolute;
+        top: 230px;
         height: 200px;
-        top: 187px;
     }
     .republican {
-        left: 332px;
+        margin-left: 150px;
     }
     .democrat {
-        left: 101px;
+        margin-left: -300px;
+    }
+    .democratBtn {
+        position:absolute;
+        top: 430px;
+        display: inline-block;
+    }
+    .republicanBtn {
+        position:absolute;
+        top: 430px;
+        display: inline-block;
     }
     .jail {
-        height: 200px;
+        position: absolute;
         width: 200px;
-        position:absolute;
-        top: 187px;
-        left: 64px;
+        height: 200px;
+        top: 230px;
+        margin-left: -320px;
     }
+    #election_logo {
+        position: absolute;
+        width: 100px;
+        top: 400px;
+        margin-left: -40px;
+    }
+
 </style>
 </head>
 <body>
-    <h1 class="header">The White House</h1>
-    <p>It's time to lipsync for your life!!</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/White_House_lawn.jpg/2560px-White_House_lawn.jpg" class="white_house">
-    <br>
-    <button class="democratBtn" id="demStay">Shante You Stay</button>
-    <button class="democratBtn" id="demAway">Sashay Away</button>
-    <button class="republicanBtn" id="repStay">Shante You Stay</button>
-    <button class="republicanBtn" id="repAway">Sashay Away</button>
-    <img id="republican" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Trump_Transparent.png" class="republican outHouse">
-    <img id="democrat" src= "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Hillary_Transparent.png/171px-Hillary_Transparent.png" class="democrat outHouse">
+    
+    <div class="container">
+      
+      <h1 class="header">The White House</h1>
+      <p>It's time to lipsync for your life!! <br> And don't <em>f*** it up</em>!</p>
+      <img id="democrat" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Hillary_Transparent.png/171px-Hillary_Transparent.png" class="democrat outHouse">
+      <img id="republican" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Trump_Transparent.png" class="republican outHouse">
+      <img id="election_logo" src="https://cdn.pixabay.com/photo/2016/04/06/13/23/presidential-1311753_1280.png">
+
+      <div class="democrat democratBtn">         
+        <button id="demStay">Shante You Stay</button>
+        <button id="demAway">Sashay Away</button><br>
+        <button id="notWithHer">I'm not with her</button> 
+      </div>
+      
+      <div class="republican republicanBtn">
+          <button id="repStay">Shante You Stay</button>
+          <button id="repAway">Sashay Away</button>
+      </div>
+  
+    </div>
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script>
-    $("#democrat").on("click", function() {
-    $("#democrat")
-        .attr("src","https://upload.wikimedia.org/wikipedia/commons/6/68/Bernie_Sanders_September_2015_cropped.jpg");
-    $("#democratBtn")
-    .prop("disabled",true);  
-    });
+    
+    $("#notWithHer").on("click", function() {
+      $("#democrat")
+        .attr("src","http://cdn.rollingstone.com/feature/trumped/img/bernie-sanders-before.png");
+      $("#demAway, #repStay")
+       .prop("disabled",true)
+       .hide();  
+    }
+    );
         
     $("#demStay, #repAway")
     .on("click", function() {
-        $("#democrat")
+      $("#democrat")
        .removeClass()
        .addClass("inHouse");
-       $("#republican")
+      $("#republican")
        .removeClass()
        .addClass("republican outHouse");
+       $("button")
+       .prop("disabled",true)
+       .hide();
     }
     );
+    
     $("#demAway, #repStay")
     .on("click", function() {
        $("#democrat")
@@ -92,14 +128,13 @@
        .addClass("inHouse");
        $("<img>")
        .attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Jail_Bars_Icon.svg/2000px-Jail_Bars_Icon.svg.png")
-       .appendTo("body")
+       .appendTo(".container")
        .addClass("jail");
        $("button")
-       .prop("disabled",true);
+       .prop("disabled",true)
+       .hide();
     }
     );
 </script>
-
-    
 </body>
 </html>
