@@ -35,13 +35,11 @@
     }
     .democratBtn{
         position:relative;
-        top: 40px;
-        left: 64px;
+        margin-top: 40px;
     }
     .republicanBtn{
         position:relative;
-        top: 40px;
-        left: 115px;
+        margin-top: 40px;
     }
     .jail {
         height: 200px;
@@ -68,8 +66,10 @@
 <script>
     $("#democrat").on("click", function() {
     $("#democrat")
-        .attr("src","https://upload.wikimedia.org/wikipedia/commons/6/68/Bernie_Sanders_September_2015_cropped.jpg")
-        })
+        .attr("src","https://upload.wikimedia.org/wikipedia/commons/6/68/Bernie_Sanders_September_2015_cropped.jpg");
+    $("#democratBtn")
+    .prop("disabled",true);  
+    });
         
     $("#demStay, #repAway")
     .on("click", function() {
